@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>notebook record</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <!-- <link rel="shortcut icon" href="" /> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/com.css">
+    <link rel="stylesheet" href="css/head.css">
+</head>
+
+<body>
+    <style media="screen">
+        .goback {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            font-size: 28px;
+            color: #F1F1F1;
+            font-weight: 100;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        #record-name {
+            height: 45px;
+            font-size: 18px;
+            line-height: 45px;
+            color: #a2a0a0;
+        }
+
+        .record-income {
+            text-align: right;
+        }
+
+        .on_color {
+            color: #d6cc42;
+        }
+        #sort {height: 45px;line-height: 45px;}
+        #sort input {
+          width: 100px;
+          border: 0;
+        }
+        .icon-sort {float: left;padding: 0 15px;}
+        .name-sort {display: inline-block;    padding-right: 15px;
+            /*width: 100px;*/
+        }
+        .num-money span {float: left;}
+        .num-money {float: right;}
+        .num-sort {text-align: right;float: left;}
+    </style>
+    <section>
+        <div class="goback" onclick="goBack()">
+            X
+        </div>
+        <div id="record-name">
+            <div class="col-md-6 col-xs-6 record-income">
+                收入
+            </div>
+            <div class="col-md-6 col-xs-6 record-expenses on_color">
+                支出
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="sort">
+          <icon-sort></icon-sort>
+          <name-sort></name-sort>
+          <p class="num-money"><span>￥</span><num-sort></num-sort></p>
+        </div>
+    </section>
+    <section>
+      <div class="row">
+        <div class="sort-01">
+          <icon-sort></icon-sort>
+          <p></p>
+        </div>
+      </div>
+    </section>
+    <script src="js/Screen_adaptation.js" charset="utf-8"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="js/vue2.2.1.js" charset="utf-8"></script>
+    <script>
+    var sort = new Vue ({
+      el:'#sort',
+      components: {
+          // 局部注册
+          'icon-sort': {
+              template: '<i class="icon-sort"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></i>'
+          },
+          // 局部注册
+          'name-sort': {
+              template: '<p class="name-sort"><input type="text" name="" value="一般" readonly="readonly"></p>'
+          },
+          'num-sort': {
+              // template: '<input type="text" name="num-sort" class="num-sort" value="0.00">'
+                  template: '<div class="name-sort" contenteditable="true" placeholder="0.00">0.00</div>'
+          }
+      }
+    })
+    // $(".num-sort").width($(this).)
+    </script>
+
+</body>
+
+</html>

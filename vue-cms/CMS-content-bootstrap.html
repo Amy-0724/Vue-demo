@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>CMS内容管理系统vue</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <!-- <link rel="shortcut icon" href="" /> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    <link rel="stylesheet" href="css/com.css">
+    <link rel="stylesheet" href="css/cms-content.css">
+
+</head>
+
+<body>
+    <!-- nav  添加.navbar-inverse可以反色 -->
+    <nav class="navbar navbar-default" role="navigation" id="head">
+        <div class="container-fluid" style="max-width:1000px">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home" aria-hidden="false"></span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 右边header -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- nav end -->
+    <!-- banner -->
+    <section id="banner">
+        <div class="well">
+            <div class="" id="elements">
+                <div class="" data-toggle="collapse" data-target="#demo">
+                    点击展开功能
+                </div>
+                <!-- <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo"> 点击展开功能 </button> -->
+                <div id="demo" class="collapse">
+                    <ul>
+                        <li>功能3.1</li>
+                        <li>功能3.2</li>
+                        <li>功能3.3</li>
+                        <li>功能3.4</li>
+                        <li>功能3.5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner end -->
+    <!-- content -->
+    <section id="content">
+        <div class="container bs-docs-container">
+            <div class="row">
+                <div class="col-md-3" role="complementary">
+                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+                        <!-- 折叠 -->
+                        <div class="bs-docs-example">
+                            <div class="accordion" id="accordion2">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">功能1</a>
+                                    </div>
+                                    <div id="collapseOne" class="accordion-body in collapse" style="height: auto;">
+                                        <div class="accordion-inner">
+                                            <ul>
+                                                <li>功能1.1</li>
+                                                <li>功能1.2</li>
+                                                <li>功能1.3</li>
+                                                <li>功能1.4</li>
+                                                <li>功能1.5</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">功能2</a>
+                                    </div>
+                                    <div id="collapseTwo" class="accordion-body collapse" style="height: 0px;">
+                                        <div class="accordion-inner">
+                                            <ul>
+                                                <li>功能2.1</li>
+                                                <li>功能2.2</li>
+                                                <li>功能2.3</li>
+                                                <li>功能2.4</li>
+                                                <li>功能2.5</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">功能3</a>
+                                    </div>
+                                    <div id="collapseThree" class="accordion-body collapse" style="height: 0px;">
+                                        <div class="accordion-inner">
+                                            <ul>
+                                                <li>功能3.1</li>
+                                                <li>功能3.2</li>
+                                                <li>功能3.3</li>
+                                                <li>功能3.4</li>
+                                                <li>功能3.5</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 折叠end -->
+                    </nav>
+                </div>
+
+                <div class="col-md-9 col-xs-12" role="main">
+                    <div class="well">主要内容</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content end -->
+    <footer id="foot" class="well">
+        <div class="foot" style="max-width:1000px;margin:auto;">
+            <address>
+              <strong>Amy</strong><br>
+              <a href="mailto:amy0241@163.com">amy0241@163.com</a>
+            </address>
+        </div>
+    </footer>
+    <!-- 此处jquery需要1.8以上的版本 -->
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script src="js/Screen_adaptation.js" charset="utf-8"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/vue2.2.1.js" charset="utf-8"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="js/cms-content.js" charset="utf-8"></script>
+</body>
+
+</html>

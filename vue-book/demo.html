@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <!-- <link rel="shortcut icon" href="" /> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/com.css">
+    <link rel="stylesheet" href="css/head.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 3. #app是Vue实例挂载的元素，应该在挂载元素范围内使用组件-->
+        <my-component></my-component>
+    </div>
+    <div id="app1">
+        <my-component></my-component>
+    </div>
+
+    <div id="app2">
+        <my-component></my-component>
+    </div>
+
+    <div id="app3">
+        <!-- 不能使用my-component组件，因为my-component是一个局部组件，它属于#app-->
+        <my-component></my-component>
+    </div>
+    <div id="app5">
+        <my-component1>
+        </my-component1>
+    </div>
+    <div id="app6">
+        <my-component1>
+        </my-component1>
+        <my-component2>
+        </my-component2>
+        <my-component3>
+        </my-component3>
+    </div>
+    <div id="app7">
+        <my-component7></my-component7>
+    </div>
+    <!-- 使用<script>标签时，type指定为text/x-template，意在告诉浏览器这不是一段js脚本，浏览器在解析HTML文档时会忽略<script>标签内定义的内容。 -->
+    <script type="text/x-template" id="myComponent7">
+        <div>This is a component!</div>
+    </script>
+    <div id="app8">
+        <my-component8></my-component8>
+    </div>
+
+    <template id="myComponent8">
+            <div>This is a component8!</div>
+        </template>
+
+
+        <div id="app9">
+            <my-component9 v-bind:my-name="name" v-bind:my-age="age"></my-component9>
+        </div>
+    <template id="myComponent9">
+    <table>
+        <tr>
+            <th colspan="2">
+                子组件数据
+            </th>
+        </tr>
+        <tr>
+            <td>my name</td>
+            <td>{{ myName }}</td>
+        </tr>
+        <tr>
+            <td>my age</td>
+            <td>{{ myAge }}</td>
+        </tr>
+    </table>
+</template>
+<!-- 单向数据绑定 -->
+<div id="app10">
+
+  			<table>
+  				<tr>
+  					<th colspan="3">父组件数据</td>
+  				</tr>
+  				<tr>
+  					<td>name</td>
+  					<td>{{ name }}</td>
+  					<td><input type="text" v-model="name" /></td>
+  				</tr>
+  				<tr>
+  					<td>age</td>
+  					<td>{{ age }}</td>
+  					<td><input type="text" v-model="age" /></td>
+  				</tr>
+  			</table>
+
+  			<my-component10 v-bind:my-name.sync="name" v-bind:my-age.sync="age"></my-component10>
+</div>
+
+<template id="myComponent10">
+			<table>
+				<tr>
+					<th colspan="3">子组件数据</td>
+				</tr>
+				<tr>
+					<td>my name</td>
+					<td>{{ myName }}</td>
+					<td><input type="text" v-model="myName" /></td>
+				</tr>
+				<tr>
+					<td>my age</td>
+					<td>{{ myAge }}</td>
+					<td><input type="text" v-model="myAge" /></td>
+				</tr>
+			</table>
+		</template>
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <script src="https://keepfool.github.io/vue-tutorials/02.Components/Part-1/js/vue.js"></script>
+    <script>
+        // 1.创建一个组件构造器
+        var myComponent = Vue.extend({
+            template: '<div>This is my first component!</div>'
+        })
+
+        // 2.注册组件，并指定组件的标签，组件的HTML标签为<my-component>
+        Vue.component('my-component', myComponent)
+
+        var app = new Vue({
+            el: '#app'
+        });
+        var app1 = new Vue({
+            el: '#app1'
+        });
+
+        var app2 = new Vue({
+            el: '#app2'
+        })
+
+        var app3 = new Vue({
+            el: '#app3'
+        })
+
+        // 全局注册，my-component1是标签名称
+        Vue.component('my-component1', {
+            template: '<div>This is the first ef 8 wy8wef8e fyhwe fhweu8 component!</div>'
+        })
+
+        var app5 = new Vue({
+            el: '#app5'
+        })
+
+        var app6 = new Vue({
+            el: '#app6',
+            components: {
+                // 局部注册，my-component2是标签名称
+                'my-component2': {
+                    template: '<div>This is the second component!</div>'
+                },
+                // 局部注册，my-component3是标签名称
+                'my-component3': {
+                    template: '<div>This is the third component!</div>'
+                }
+            }
+        })
+
+        Vue.component('my-component7', {
+            template: '#myComponent7'
+        })
+
+        var app7 = new Vue({
+            el: '#app7'
+        })
+
+        Vue.component('my-component8', {
+            template: '#myComponent8'
+        })
+
+        new Vue({
+            el: '#app8'
+        })
+
+        var vm = new Vue({
+            el: '#app9',
+            data: {
+                name: 'keepfool',
+                age: 28
+            },
+            components: {
+                'my-component9': {
+                    template: '#myComponent9',
+                    props: ['myName', 'myAge']
+                }
+            }
+        })
+
+        var vm10 = new Vue({
+			el: '#app10',
+			data: {
+				name: 'keepfool',
+				age: 28
+			},
+			components: {
+				'my-component10': {
+					template: '#myComponent10',
+					props: ['myName', 'myAge']
+				}
+			}
+		})
+    </script>
+    <script src="js/Screen_adaptation.js" charset="utf-8"></script>
+    <style media="screen">
+
+    </style>
+</body>
+
+</html>

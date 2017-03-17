@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>CMS内容管理系统vue</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <!-- <link rel="shortcut icon" href="" /> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    <link rel="stylesheet" href="css/com.css">
+
+</head>
+
+<body>
+    <!-- nav  添加.navbar-inverse可以反色 -->
+    <nav class="navbar navbar-default navbar-inverse" role="navigation" id="head">
+        <div class="container-fluid" style="max-width:1000px">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home" aria-hidden="false"></span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 右边header -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- nav end -->
+    <!-- banner -->
+    <section id="banner">
+        <div class="banner" id="banner-app">
+            <template>
+              <el-carousel indicator-position="outside">
+                <el-carousel-item v-for="item in 4">
+                  <h3>{{ item }}</h3>
+                </el-carousel-item>
+              </el-carousel>
+            </template>
+        </div>
+        <div class="" id="elements">
+          <!-- 小于992，显示 -->
+            <div class="up-open-button" data-toggle="collapse" data-target="#app"><i class="el-icon-menu"></i></div>
+            <div id="app" class="collapse">
+              <el-row class="tac up-open">
+                <el-col :span="24">
+                  <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+                    <el-submenu index="1">
+                      <template slot="title"><i class="el-icon-message"></i>导航一</template>
+                      <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="1-1">选项1</el-menu-item>
+                        <el-menu-item index="1-2">选项2</el-menu-item>
+                      </el-menu-item-group>
+                      <el-menu-item-group title="分组2">
+                        <el-menu-item index="1-3">选项3</el-menu-item>
+                      </el-menu-item-group>
+                      <el-submenu index="1-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="1-4-1">选项1</el-menu-item>
+                      </el-submenu>
+                    </el-submenu>
+                    <el-menu-item index="2"><i class="el-icon-menu"></i>导航二</el-menu-item>
+                    <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
+                  </el-menu>
+                </el-col>
+                </el-row>
+            </div>
+        </div>
+    </section>
+    <!-- banner end -->
+    <!-- content -->
+    <section id="content">
+        <div class="container bs-docs-container">
+            <div class="row">
+                <div class="col-md-3" role="complementary">
+                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+                        <!-- 右侧 三级联动  -->
+                        <div id="fold-linkage">
+                            <el-tree :data="data2" node-key="id" :default-expanded-keys="['core']" :default-expanded-keys="['core_use']" :props="defaultProps"></el-tree>
+                        </div>
+                        <!-- 三级联动 end -->
+                    </nav>
+                </div>
+
+                <div class="col-md-9 col-xs-12" role="main">
+                    <div class="well">主要内容</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content end -->
+    <footer id="foot" class="well">
+        <div class="foot" style="max-width:1000px;margin:auto;">
+            <address>
+              <strong>Amy</strong><br>
+              <a href="mailto:amy0241@163.com">amy0241@163.com</a>
+            </address>
+        </div>
+    </footer>
+    <style media="screen">
+    /*导航*/
+    #head {margin-bottom: 0;border-radius: 0}
+        /*宽度低于992时显示的下拉*/
+
+        .up-open-button {
+            height: 36px;
+        }
+
+        .up-open .el-menu-vertical-demo {
+            background-color: #f5f5f5
+        }
+        /*走马灯*/
+
+        .banner {
+            text-align: center;
+        }
+
+        .el-carousel__item h3 {
+            color: #475669;
+            font-size: 18px;
+            opacity: 0.75;
+            line-height: 300px;
+            margin: 0;
+        }
+
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
+        /*三级联动*/
+
+        #fold-linkage .el-tree {
+            border: 0;
+        }
+        /* 展开的功能导航 */
+        .up-open-button {padding-left: 20px;}
+        /*foot*/
+        #foot {margin-bottom: 0}
+    </style>
+
+    <!-- 此处jquery需要1.8以上的版本 -->
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script src="js/Screen_adaptation.js" charset="utf-8"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/vue2.2.1.js" charset="utf-8"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="js/cms-content.js" charset="utf-8"></script>
+    <script>
+        // 走马灯
+        new Vue().$mount('#banner-app');
+        // 宽度低于992时显示的功能导航
+        var Main = {
+        methods: {
+          handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+          },
+          handleClose(key, keyPath) {
+            console.log(key, keyPath);
+          }
+        }
+      }
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+
+        //三级联动
+        var Main_linkage = {
+            data() {
+                return {
+                    data2: [{
+                        id: 'core',
+                        label: '核心',
+                        children: [{
+                            id: 'core_use',
+                            label: '常用操作',
+                            children: [{
+                                id: 'core_use_column_management',
+                                label: '网站栏目管理'
+                            }, {
+                                id: 'core_use_file_list',
+                                label: '所有档案列表'
+                            }, {
+                                id: 'core_use_pending_file',
+                                label: '待审核的档案'
+                            }, {
+                                id: 'core_use_publish_document',
+                                label: '我发布的文档'
+                            }, {
+                                id: 'core_use_comment_management',
+                                label: '评论管理'
+                            }, {
+                                id: 'core_use_content_recycle_bin',
+                                label: '内容回收站'
+                            }]
+                        }, {
+                            id: 'core_content_management',
+                            label: '内容管理',
+                            children: [{
+                                id: 'core_content_ordinary_article',
+                                label: '普通文章'
+                            }, {
+                                id: 'core_content_topic_management',
+                                label: '专题管理'
+                            }]
+                        }, {
+                            id: 'core_attachment_management',
+                            label: '附件管理',
+                            children: [{
+                                id: 'core_attachment_upload_newdata',
+                                label: '上传新数据'
+                            }, {
+                                id: 'core_attachment_attachment_data_management',
+                                label: '附件数据管理'
+                            }, {
+                                id: 'core_attachment_file_manager',
+                                label: '文件式管理器'
+                            }]
+                        }, {
+                            id: 'core_channel_model',
+                            label: '频道模型',
+                            children: [{
+                                id: 'core_channel_content_model_management',
+                                label: '内容模型管理'
+                            }, {
+                                id: 'core_channel_single_page_document_management',
+                                label: '单页文档管理'
+                            }, {
+                                id: 'core_channel_linkage_category_management',
+                                label: '联动类别管理'
+                            }, {
+                                id: 'core_channel_free_list_management',
+                                label: '自由列表管理'
+                            }, {
+                                id: 'core_channel_custom_form',
+                                label: '自定义表单'
+                            }]
+                        }, {
+                            id: 'core_batch_maintenance',
+                            label: '批量维护',
+                            children: [{
+                                id: 'core_batch_update_system_cache',
+                                label: '更新系统缓存'
+                            }, {
+                                id: 'core_batch_document_maintenance',
+                                label: '文档批量维护'
+                            }, {
+                                id: 'core_batch_search_keyword_maintenance',
+                                label: '搜索关键词维护'
+                            }, {
+                                id: 'core_batch_document_keyword_maintenance',
+                                label: '文档关键词维护'
+                            }, {
+                                id: 'core_batch_duplicate_document_monitoring',
+                                label: '重复文档监测'
+                            }, {
+                                id: 'core_batch_automatic_summary_paging',
+                                label: '自动摘要|分页'
+                            }, {
+                                id: 'core_batch_tag_management',
+                                label: 'TAG标签管理'
+                            }, {
+                                id: 'core_batch_database_content_replacement',
+                                label: '数据库内容替换'
+                            }]
+                        }, {
+                            id: 'core_system_help',
+                            label: '系统帮助',
+                            children: [{
+                                id: 'core_batchl_reference_documentation',
+                                label: '参考文档'
+                            }, {
+                                id: 'core_channel_suggestions_feedback',
+                                label: '意见建议反馈'
+                            }, {
+                                id: 'core_channel_official_exchange_forum',
+                                label: '官方交流论坛'
+                            }]
+                        }]
+                    },{
+                        id: 'moduler',
+                        label: '模块',
+                        children: [{
+                            id: 'moduler_management',
+                            label: '模块管理',
+                            children: [{
+                                id: 'moduler_module_management',
+                                label: '模块管理'
+                            }, {
+                                id: 'moduler_upload_new_module',
+                                label: '上传新模块'
+                            }]
+                        }, {
+                            id: 'moduler_auxiliary_plugin',
+                            label: '辅助插件',
+                            children: [{
+                                id: 'moduler_auxiliary_plugin_manager',
+                                label: '插件管理器'
+                            }, {
+                                id: 'moduler_auxiliary_pick_wrong_management',
+                                label: '挑错管理'
+                            }, {
+                                id: 'moduler_auxiliary_baidu_news',
+                                label: '百度新闻'
+                            }, {
+                                id: 'moduler_auxiliary_file_manager',
+                                label: '文件管理器'
+                            }, {
+                                id: 'moduler_auxiliary_advertising_management',
+                                label: '广告管理'
+                            }, {
+                                id: 'moduler_auxiliary_links',
+                                label: '友情链接'
+                            }, {
+                                id: 'moduler_auxiliary_voting_module',
+                                label: '投票模块'
+                            }]
+                        }]
+                    },{
+                        id: 'generate',
+                        label: '生成',
+                        children: [{
+                            id: 'generate_automatic_task',
+                            label: '自动任务',
+                            children: [{
+                                id: 'generate_automatic_onekey_update_site',
+                                label: '一键更新网站'
+                            }, {
+                                id: 'generate_automatic_update_system_cache',
+                                label: '更新系统缓存'
+                            }]
+                        }, {
+                            id: 'generate_html_update',
+                            label: 'HTML更新',
+                            children: [{
+                                id: 'generate_html_update_index',
+                                label: '更新主页HTML'
+                            }, {
+                                id: 'generate_html_update_column',
+                                label: '更新栏目HTML'
+                            }, {
+                                id: 'generate_html_update_document',
+                                label: '更新文档HTML'
+                            }, {
+                                id: 'generate_html_update_site_map',
+                                label: '更新网站地图'
+                            }, {
+                                id: 'generate_html_update_rss_file',
+                                label: '更新RSS文件'
+                            }, {
+                                id: 'generate_html_get_JS_file',
+                                label: '获取JS文件'
+                            }, {
+                                id: 'generate_html_update_topic',
+                                label: '更新专题HTML'
+                            }]
+                        }]
+                    },{
+                        id: 'collection',
+                        label: '采集',
+                        children: [{
+                            id: 'collection_management',
+                            label: '采集管理',
+                            children: [{
+                                id: 'collection_management_acquisition_node',
+                                label: '采集节点管理'
+                            }, {
+                                id: 'collection_management_temporary_content_management',
+                                label: '临时内容管理'
+                            }, {
+                                id: 'collection_management_import_collection_rules',
+                                label: '导入采集规则'
+                            }, {
+                                id: 'collection_management_monitor_acquisition_mode',
+                                label: '监控采集模式'
+                            }, {
+                                id: 'collection_management_collected_without_downloading_content',
+                                label: '采集未下载内容'
+                            }]
+                        }, {
+                            id: 'collection_batch_maintenance',
+                            label: '批量维护',
+                            children: [{
+                                id: 'collection_batch_update_system_cache',
+                                label: '更新系统缓存'
+                            }, {
+                                id: 'collection_batch_document_maintenance',
+                                label: '文档批量维护'
+                            }, {
+                                id: 'collection_batch_search_keyword_maintenance',
+                                label: '搜索关键词维护'
+                            }, {
+                                id: 'collection_batch_document_keyword_maintenance',
+                                label: '文档关键词维护'
+                            }, {
+                                id: 'collection_batch_duplicate_document_monitoring',
+                                label: '重复文档监测'
+                            }, {
+                                id: 'collection_batch_automatic_summary_paging',
+                                label: '自动摘要|分页'
+                            }, {
+                                id: 'collection_batch_tag_management',
+                                label: 'TAG标签管理'
+                            }, {
+                                id: 'collection_batch_database_content_replacement',
+                                label: '数据库内容替换'
+                            }]
+                        }]
+                    },{
+                        id: 'member',
+                        label: '会员',
+                        children: [{
+                            id: 'member_management',
+                            label: '会员管理',
+                            children: [{
+                                id: 'member_Register_list_members',
+                                label: '注册会员列表'
+                            }, {
+                                id: 'member_membership_level_list',
+                                label: '会员级别列表'
+                            }, {
+                                id: 'member_integral_title_setting',
+                                label: '积分头衔设置'
+                            }, {
+                                id: 'member_model_management',
+                                label: '会员模型管理'
+                            }, {
+                                id: 'member_SMS_management',
+                                label: '会员短信管理'
+                            }, {
+                                id: 'member_message_management',
+                                label: '会员留言管理'
+                            }, {
+                                id: 'member_are_dynamically_managed',
+                                label: '会员动态管理'
+                            }, {
+                                id: 'member_mood_management',
+                                label: '会员心情管理'
+                            }]
+                        }, {
+                            id: 'member_payment_tool',
+                            label: '支付工具',
+                            children: [{
+                                id: 'member_payment_point_card_product_classification',
+                                label: '点卡产品分类'
+                            }, {
+                                id: 'member_payment_point_card_product_management',
+                                label: '点卡产品管理'
+                            }, {
+                                id: 'member_payment_product_classification',
+                                label: '会员产品分类'
+                            }, {
+                                id: 'member_payment_membership_consumption_records',
+                                label: '会员消费记录'
+                            }, {
+                                id: 'member_payment_store_order_record',
+                                label: '商店订单记录'
+                            }, {
+                                id: 'member_payment_payment_interface_settings',
+                                label: '支付接口设置'
+                            }, {
+                                id: 'member_payment_peering_mode_setting',
+                                label: '配货方式设置'
+                            }]
+                        }]
+                    },{
+                        id: 'template',
+                        label: '模板',
+                        children: [{
+                            id: 'template_management',
+                            label: '模板管理',
+                            children: [{
+                                id: 'template_management_default_template_management',
+                                label: '默认模板管理'
+                            }, {
+                                id: 'template_management_tag_source_management',
+                                label: '标签源码管理'
+                            }, {
+                                id: 'template_management_custom_macro_tags',
+                                label: '自定义宏标记'
+                            }, {
+                                id: 'template_management_smart_tag_wizard',
+                                label: '智能标记向导'
+                            }, {
+                                id: 'template_management_global_mark_test',
+                                label: '全局标记测试'
+                            }]
+                        }, {
+                            id: 'template_system_help',
+                            label: '系统帮助',
+                            children: [{
+                                id: 'template_system_help_documentation',
+                                label: '参见文档'
+                            }, {
+                                id: 'template_system_help_suggestions_feedback',
+                                label: '意见建议反馈'
+                            }, {
+                                id: 'template_system_help_official_exchange_forum',
+                                label: '官方交流论坛'
+                            }]
+                        }]
+                    },{
+                        id: 'system',
+                        label: '系统',
+                        children: [{
+                            id: 'collection_management',
+                            label: '采集管理',
+                            children: [{
+                                id: 'collection_management_acquisition_node',
+                                label: '采集节点管理'
+                            }, {
+                                id: 'collection_management_temporary_content_management',
+                                label: '临时内容管理'
+                            }, {
+                                id: 'collection_management_import_collection_rules',
+                                label: '导入采集规则'
+                            }, {
+                                id: 'collection_management_monitor_acquisition_mode',
+                                label: '监控采集模式'
+                            }, {
+                                id: 'collection_management_collected_without_downloading_content',
+                                label: '采集未下载内容'
+                            }]
+                        }, {
+                            id: 'collection_batch_maintenance',
+                            label: '批量维护',
+                            children: [{
+                                id: 'collection_batch_update_system_cache',
+                                label: '更新系统缓存'
+                            }, {
+                                id: 'collection_batch_document_maintenance',
+                                label: '文档批量维护'
+                            }, {
+                                id: 'collection_batch_search_keyword_maintenance',
+                                label: '搜索关键词维护'
+                            }, {
+                                id: 'collection_batch_document_keyword_maintenance',
+                                label: '文档关键词维护'
+                            }, {
+                                id: 'collection_batch_duplicate_document_monitoring',
+                                label: '重复文档监测'
+                            }, {
+                                id: 'collection_batch_automatic_summary_paging',
+                                label: '自动摘要|分页'
+                            }, {
+                                id: 'collection_batch_tag_management',
+                                label: 'TAG标签管理'
+                            }, {
+                                id: 'collection_batch_database_content_replacement',
+                                label: '数据库内容替换'
+                            }]
+                        }, {
+                            id: 'template_system_help',
+                            label: '系统帮助',
+                            children: [{
+                                id: 'template_system_help_documentation',
+                                label: '参见文档'
+                            }, {
+                                id: 'template_system_help_suggestions_feedback',
+                                label: '意见建议反馈'
+                            }, {
+                                id: 'template_system_help_official_exchange_forum',
+                                label: '官方交流论坛'
+                            }]
+                        }]
+                    }],
+                    defaultProps: {
+                        children: 'children',
+                        label: 'label'
+                    }
+                };
+            }
+        };
+        var Ctor = Vue.extend(Main_linkage)
+        new Ctor().$mount('#fold-linkage')
+    </script>
+</body>
+
+</html>

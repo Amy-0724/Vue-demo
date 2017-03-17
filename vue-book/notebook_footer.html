@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>记事本foot</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <!-- <link rel="shortcut icon" href="" /> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/com.css">
+    <link rel="stylesheet" href="css/head.css">
+</head>
+
+<body>
+  <nav class="head">
+    <div id="head-left"><head-left></head-left></div>
+    <div id="head-center">
+        <div v-on:click="show=!show">
+          amy
+        </div>
+      <transition name="fade">
+        <p v-if="show">余额:</p>
+      </transition>
+    </div>
+    <div id="head-right"><head-right></head-right></div>
+  </nav>
+<script src="js/vue2.2.1.js" charset="utf-8"></script>
+    <script>
+        var headleft = new Vue({
+            el: '#head-left',
+            components: {
+                // 局部注册
+                'head-left': {
+                    template: '<div class="head-left f-l" onclick="goBack()"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></div>'
+                }
+            }
+        })
+        var headright = new Vue({
+            el: '#head-right',
+            components: {// 局部注册
+                'head-right': {
+                    template: '<div class="head-right">设置</div>'
+                }
+            }
+        })
+        var headcenter = new Vue({
+          el:'#head-center',
+          data:{
+            show:false
+          }
+        })
+    </script>
+    <script src="js/Screen_adaptation.js" charset="utf-8"></script>
+    <style media="screen">
+        #head {
+            position: fixed;
+            max-width: 750px;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            border-bottom: .5px solid #e7e7e7;
+            background-color: #fff
+        }
+
+        .head-left,
+        .head-right {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            font-size: 20px;
+            color: #2d2d2d;
+            position: absolute;
+            top: 0;
+            /*text-shadow: 1px 1px 0 #808080, 1px 1px 1px #808080, 2px 2px 2px #ccc;*/
+        }
+        .head-left {
+          left: 0;
+        }
+        .head-right {
+          right: 0;
+        }
+        #head-center {
+            width: 72%;
+            margin: auto;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            font-size: 18px;
+            line-height: 45px;
+            font-weight: 800;
+        }
+        .head-center p {text-align: center;}
+        .fade-enter-active, .fade-leave-active {
+          transition: opacity .5s
+        }
+        .fade-enter, .fade-leave-active {
+          opacity: 0
+        }
+    </style>
+</body>
+
+</html>

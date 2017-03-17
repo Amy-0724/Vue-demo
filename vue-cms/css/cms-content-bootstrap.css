@@ -1,0 +1,16 @@
+header,
+section,
+.foot, {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.accordion-group {
+    padding: 10px;
+}
+
+#content .container.bs-docs-container {
+    max-width: 1000px;
+}
